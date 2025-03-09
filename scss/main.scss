@@ -1,0 +1,263 @@
+// Variáveis de cores – adicionamos $text-color para textos com alto contraste
+$primary-color: #ffe5ec;      // Fundo de elementos (muito claro)
+$secondary-color: #ffb3c6;    // Elementos secundários
+$accent-color: #fb6f92;       // Elementos de destaque (botões, detalhes)
+$shadow-color: rgba(109, 99, 112, 0.493);
+$bg-start: #f4e7e9;
+$bg-end: #e8e6f0;
+$text-color: #2d2d2d;         // Cor escura para textos e elementos que exijam contraste
+
+$colorsList: #d5c7e8, #e8c1c5, #a69cac, #f0e4d7, #d9e8d6, #c7d5e8, #e8d5c7, #e8c7d5, #c7e8d5, #d5e8c7;
+
+$min-speed: 8s;
+$max-speed: 15s;
+$pos-x-min: 20vw;
+$pos-x-max: 80vw;
+$pos-y-min: 20vh;
+$pos-y-max: 80vh;
+$particle-count: 100;
+
+// Reset básico
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cookie', cursive;
+  color: $text-color;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, $bg-start, $bg-end);
+  transform-style: preserve-3d;
+  perspective: 5000px;
+  position: relative;
+  height: 100vh;
+  overflow-x: hidden
+}
+
+main {
+  padding-left: 5vh;
+  padding-right: 5vh;
+  overflow: hidden;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-top {
+  background-color: $primary-color;
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, $bg-start 0%, $accent-color 50%, $bg-start 100%);
+    border-radius: 10px;
+  }
+}
+
+.header-nav {
+  background-color: $bg-start;
+  border-top: 1px solid lighten($accent-color, 40%);
+}
+
+.navlink {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text-color;
+  transition: color 0.3s ease;
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.fancyh1 {
+  font-family: 'Lobster', cursive;
+  font-weight: 300;
+  font-size: 2rem;
+  color: $text-color;
+  text-shadow: 1px 1px 4px $shadow-color;
+  text-align: center;
+}
+
+.logotext {
+  font-size: 1.6rem;
+  color: darken($accent-color, 10%);
+  font-family: 'Lobster', cursive;
+  font-weight: 500;
+  padding: 1px;
+  text-shadow: 2px 1px 4px $shadow-color;
+}
+
+.text-pastel-purple {
+  color: darken($secondary-color, 15%);
+}
+
+.text-pastel-pink {
+  color: darken($primary-color, 15%);
+}
+
+.bg-pastel-pink {
+  background-color: $primary-color;
+}
+
+.bg-pastel-purple {
+  background-color: $accent-color;
+}
+
+button.learn-more,
+a.learn-more {
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 0.8em 2em;
+  background: darken($accent-color, 5%);
+  border: 2px solid darken($accent-color, 10%);
+  border-radius: 2em;
+  transition: all 500ms ease-in-out;
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    background: darken($accent-color, 15%);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 16px $shadow-color;
+    border-color: darken($accent-color, 20%);
+  }
+}
+
+.particle {
+  height: 1rem;
+  width: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 500px;
+  animation-iteration-count: infinite;
+  animation-direction: reverse;
+  animation-timing-function: linear;
+  opacity: 0;
+  z-index: 0;
+}
+
+@for $i from 1 through $particle-count {
+  .particle:nth-child(#{$i}) {
+    animation-name: moveOut-#{$i};
+    $randomNumber: random();
+    animation-duration: $min-speed + $randomNumber * ($max-speed - $min-speed);
+    animation-delay: $randomNumber * 3s;
+    i.fa {
+      $color: nth($colorsList, ceil(random() * 10));
+      color: $color;
+      text-shadow: 0px 0px 2px $color, 0px 0px 4px $color;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@for $j from 1 through $particle-count {
+  @keyframes moveOut-#{$j} {
+    0% {
+      opacity: 0;
+      $x: $pos-x-min + random() * ($pos-x-max - $pos-x-min);
+      $y: $pos-y-min + random() * ($pos-y-max - $pos-y-min);
+      transform: translate($x, $y) translateZ(#{$j * 20}px) scale(#{$j * 0.05});
+    }
+    20% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(50vw - 0.5rem), calc(50vh - 0.5rem)) translateZ(#{$j}px) scale(0);
+    }
+  }
+}
+
+// Estilos do Dropdown
+.dropdown-content {
+  position: absolute!important;           // Mantém o posicionamento absoluto
+  top: 100%;                   // Aparece abaixo do link
+  left: 50%;                  // Centraliza horizontalmente
+  transform: translateX(-50%) translateY(-20px); // Centraliza e começa acima
+  max-width: 42rem;           // Equivalente a max-w-2xl, mas sem w-screen
+  width: 90%;                 // Limita a largura a 90% da tela
+  margin-top: 1rem;
+  border-radius: 8px;
+  background-color: $primary-color;
+  color: $text-color;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  box-sizing: border-box;     // Garante que padding não aumente a largura
+
+  &.active {
+    transform: translateX(-50%) translateY(0); // Apenas sobe ao ativar
+    opacity: 1;
+    visibility: visible;
+  }
+
+  h3 {
+    font-family: 'Lobster', cursive;
+    font-weight: 400;
+    font-size: 2rem;
+    color: darken($accent-color, 10%);
+    text-shadow: 1px 1px 4px $shadow-color;
+  }
+
+  h4 {
+    font-family: 'Cookie', cursive;
+    font-weight: 600;
+    color: darken($accent-color, 5%);
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+// Botão de fechar no dropdown
+.p-6 div{
+  
+}
+.dropdown-content {
+  position: fixed;            // Posiciona em relação à viewport
+  top: 60px;                 // Ajuste para aparecer abaixo da navegação (ajuste conforme altura do header)
+  left: 50%;                 // Centraliza horizontalmente
+  transform: translateX(-50%) translateY(-20px); // Centraliza e desloca para cima
+  width: 90%;                // Mantém responsividade
+  max-width: 42rem;          // Limita a largura máxima
+  margin: 0 auto;            // Garante centralização
+  border-radius: 8px;
+  background-color: $primary-color;
+  color: $text-color;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-in-out;
+  box-sizing: border-box;
+  z-index: 20;               // Garante que fique acima de outros elementos
+
+  &.active {
+    transform: translateX(-50%) translateY(0); // Apenas sobe ao ativar
+    opacity: 1;
+    visibility: visible;
+    left: 35%;
+    max-width: 90vw;
+    border-radius: 25px;
+  }
+}

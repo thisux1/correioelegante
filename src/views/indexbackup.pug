@@ -1,0 +1,139 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Happy Valentines Day, Tara
+    // Fontes
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    script(src="https://sdk.scdn.co/spotify-player.js")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet")
+    // Tailwind CSS
+    script(src="https://cdn.tailwindcss.com")
+    // CSS Personalizado
+    link(rel="stylesheet" href="/css/style.css")
+    link(rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon")
+
+  body(class="bg-gradient-to-br from-pink-200 via-rose-100 to-green-100")
+    div.loading-screen.visible
+      div.loading-heart
+        svg(viewBox="0 0 24 24" fill="#b26d84" height="100%" width="100%")
+          path(d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z")
+      h1.fancyh1 Loading your surprise...
+
+    div.present-screen.hidden
+      div#particles-container
+      h1.fancyh1 Hey Tara, I got a present for you
+      h1.fancyh3#hope I hope you enjoy it :)
+      div.gift-container
+        div.img-container
+          img.kuku#gatin(src="/assets/jump-character.png" alt="kuku")
+          button.box(onclick="giftAnimation.handleClick()")
+            img(src="/assets/box.png" alt="box")
+          img.lid(src="/assets/box-lid.png" alt="box-lid")
+      button#openButton.learn-more Yayy
+
+    div.main-content.hidden
+      div.banner
+        svg(viewBox="0 0 600 100" width="100%" preserveAspectRatio="xMidYMid meet")
+          defs
+            clipPath#clip-text
+              rect.reveal-rect(x="0" y="0" width="0" height="100")
+            path#text-curve(d="M0,80 Q300,0 600,80" fill="transparent")
+          text.fancyh1(clip-path="url(#clip-text)")
+            textPath(href="#text-curve" startOffset="50%" text-anchor="middle") Happy Valentine's Day, Tara
+        img.parallax-item.lozad#banner(src="/assets/t (12).png")
+        img#caneta(src="/assets/caneta.png" alt="Caneta")
+
+      header.text-center.py-6.space-y-2
+        h2.fancyh3.animate-bounce Scroll ↓
+
+      div.container
+        div.valentines.animate-float
+          div.envelope-container
+          div.envelope
+          div.front
+          div.card
+            div.text Would you...<br>be my<br>Valentine?
+            div.heart
+
+      h1#because.fancyh3 Because...
+      div.orbit-container
+        section.parallax-gallery
+          div.gallery-container
+            div#drag-container
+              div#spin-container
+                // Imagens da galeria com lazy loading
+                img.lozad(data-src="/assets/img1.webp" alt="Imagem 1")
+                img.lozad(data-src="/assets/img2.png" alt="Imagem 2")
+                img.lozad(data-src="/assets/img3.png" alt="Imagem 3")
+                img.lozad(data-src="/assets/img4.png" alt="Imagem 4")
+                img.lozad(data-src="/assets/img5.webp" alt="Imagem 5")
+                img.lozad(data-src="/assets/img6.webp" alt="Imagem 6")
+                img.lozad(data-src="/assets/img7.png" alt="Imagem 7")
+                img.lozad(data-src="/assets/img8.png" alt="Imagem 8")
+                img.lozad(data-src="/assets/img9.png" alt="Imagem 9")
+                img.lozad(data-src="/assets/img10.webp" alt="Imagem 10")
+                img.lozad(data-src="/assets/img11.webp" alt="Imagem 11")
+                img.lozad(data-src="/assets/img12.webp" alt="Imagem 12")
+                img.lozad(data-src="/assets/img13.webp" alt="Imagem 13")
+                img.lozad(data-src="/assets/img14.webp" alt="Imagem 14")
+                img.lozad(data-src="/assets/img15.webp" alt="Imagem 15")
+                img.lozad(data-src="/assets/img16.webp" alt="Imagem 16")
+                img.lozad(data-src="/assets/img17.png" alt="Imagem 17")
+                img.lozad(data-src="/assets/img18.png" alt="Imagem 18")
+                img.lozad(data-src="/assets/img19.webp" alt="Imagem 19")
+                img.lozad(data-src="/assets/img21.png" alt="Imagem 21")
+                img.lozad(data-src="/assets/img24.png" alt="Imagem 24")
+              div#ground
+              div#divcarta
+                h1#carta.fancyh1.reveal-rect I love you more than<br>you love all these things:
+                img.lozad(data-src="/assets/carta.png" alt="Imagem Central")
+
+      h1.fancyh1 Fun facts about us
+      section.cronometro
+        div.cronometro-container
+          h1.fancyh3#bean It's Bean
+          div.cronometro
+            div.tempo
+              span#dias 0
+              p Days
+            div.tempo
+              span#horas 0
+              p Hours
+            div.tempo
+              span#minutos 0
+              p Minutes
+            div.tempo
+              span#segundos 0
+              p Seconds
+          div.serie-info
+            h3.fancyh3#since Since our love started.
+            p
+              | We could have watched 
+              strong "How I Met Your Mother"
+              span#vezes-serie 0
+              |  times!
+
+      br
+      button#openQuiz.learn-more Special quiz?
+
+    div#quizScreen.hidden
+      div.quiz-container
+        h2.fancyh1 Silly Quiz
+        p.fancyh3 Answer the questions correctly and win a silly prize!!
+        div#questionContainer
+          // Perguntas e opções serão inseridas via JavaScript
+        button#nextButton.learn-more.hidden Next
+        div#result.hidden
+          h3(style="font-family: 'Brush Script MT', cursive;") You're so good, Tara!
+          p(style="font-family: 'Brush Script MT', cursive;") You won a <strong>vale beijinhos vitalício</strong>! 💖 I hope I made you smile, like knowing I have you in my life always makes me
+          div.confetti2
+
+    script(src="https://code.jquery.com/jquery-3.6.4.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.js")
+    script(src="/js/main.js")
