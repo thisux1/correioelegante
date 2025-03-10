@@ -1,66 +1,12 @@
-doctype html
-html(lang="pt")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Correio Elegante Digital
-    link(rel="preconnect" href="https://fonts.googleapis.com")
-    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
-    link(href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lobster&display=swap" rel="stylesheet")
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
-    link(rel="icon" type="image/x-icon" href="/assets/logo.png")
-    script(src="https://cdn.tailwindcss.com")
-    link(rel="stylesheet" href="/css/main.css")
-  body(class="min-h-screen flex flex-col overflow-hidden")
-    header(class="bg-white shadow-md")
-      div(class="header-top flex" id="header-top")
-        div(class="flex items-center")
-          img(src="/assets/logo.png" alt="Logo" class="w-10 h-10 mr-3")
-          h1(class="logotext text-xl") Correio Elegante
-      nav(class="header-nav flex justify-center bg-white" id="header-nav")
-        ul(class="flex space-x-8 py-3")
-          li: a(href="/create" class="navlink hover:text-accent transition") Enviar Carta
-          li(class="relative")
-            a(href="/how-it-works" class="navlink hover:text-accent transition dropdown-trigger") Como Funciona
-            div(class="dropdown-content hidden absolute left-1/2 transform -translate-x-1/2 w-screen max-w-2xl bg-white shadow-lg z-20")
-              div(class="p-6")
-                h3(class="text-2xl font-bold text-pastel-pink mb-6 text-center") Como Funciona
-                div(class="space-y-6")
-                  div(class="flex items-start")
-                    span(class="text-pastel-pink font-bold text-xl mr-4") 1.
-                    div
-                      h4(class="text-lg font-semibold mb-2") Criação da Mensagem
-                      p(class="text-gray-600") Preencha o formulário com sua mensagem especial e escolha um tema que seja sua cara.
-                  div(class="flex items-start")
-                    span(class="text-pastel-pink font-bold text-xl mr-4") 2.
-                    div
-                      h4(class="text-lg font-semibold mb-2") Personalização
-                      p(class="text-gray-600") Escolha o layout da mensagem e veja uma pré-visualização antes de finalizar.
-                  div(class="flex items-start")
-                    span(class="text-pastel-pink font-bold text-xl mr-4") 3.
-                    div
-                      h4(class="text-lg font-semibold mb-2") Pagamento
-                      p(class="text-gray-600") A mensagem é enviada para processamento após a confirmação do pagamento, que é feito de forma segura via Pix, no valor de R$4.
-                  div(class="flex items-start")
-                    span(class="text-pastel-pink font-bold text-xl mr-4") 4.
-                    div
-                      h4(class="text-lg font-semibold mb-2") Geração do QR Code
-                      p(class="text-gray-600") Sua mensagem é transformada em uma URL única e convertida em um QR Code que será impresso e entregue a você para presentear seu amado(a).
-                  div(class="flex items-start")
-                    span(class="text-pastel-pink font-bold text-xl mr-4") 5.
-                    div
-                      h4(class="text-lg font-semibold mb-2") Visualização Final
-                      p(class="text-gray-600") O destinatário precisará apenas escanear o QR Code para visualizar o seu presente digital e se encantar com a criativa surpresa.
-                div(class="text-center mt-8")
-                  button(class="close-dropdown learn-more") Fechar
-          li: a(href="/contact" class="navlink hover:text-accent transition") Contato
-    main(class="flex-grow flex flex-col items-center justify-center py-10 relative")
-      div(class="overlay hidden fixed inset-0 bg-black bg-opacity-50 z-10")
-      - for (var i = 1; i <= 100; i++)
-        div(class="particle")
-          i(class="fa fa-heart-o")
-      div(class="text-center z-10")
-        h2(class="fancyh1 text-3xl md:text-5xl text-pastel-pink mb-4") Reviva o romantismo saindo do básico
-        p(class="text-base md:text-xl text-gray-600 max-w-xl mx-auto mb-6") Envie cartas digitais personalizadas com temas únicos, compartilhe com um QR code e encante quem você ama.
-        a(href="/create" class="learn-more") Escreva Sua Mensagem
-    script(src="/js/main.js")
+extends layout.pug
+
+block content
+  main(class="flex-grow flex flex-col items-center justify-center py-10 relative")
+    div(class="overlay hidden fixed inset-0 bg-black bg-opacity-50 z-10")
+    - for (var i = 1; i <= 100; i++)
+      div(class="particle")
+        i(class="fa fa-heart-o")
+    div(class="text-center z-10")
+      h2(class="fancyh1 text-3xl md:text-5xl text-pastel-pink mb-4") Reviva o romantismo saindo do básico
+      p(class="text-base md:text-xl text-gray-600 max-w-xl mx-auto mb-6") O tradicional correio elegante agora digital, com mensagens personalizadas e criativas para surpreender quem você gosta.
+      a(href="/create" class="learn-more") Escreva Sua Mensagem

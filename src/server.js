@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Configuração do Pug
 app.set('view engine', 'pug');
@@ -25,5 +26,9 @@ mongoose.connect('mongodb://localhost:27017/correio-elegante', {
 // Rotas
 app.get('/', (req, res) => res.render('index')); // Renderiza src/views/index.pug
 app.get('/create', (req, res) => res.render('create')); // Renderiza src/views/create.pug (placeholder)
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
 
 app.listen(3000, () => console.log('Servidor na porta 3000'));

@@ -1,0 +1,125 @@
+// scss/partials/header.scss
+.logotext {
+  font-size: 1.6rem;
+  color: darken($accent-color, 10%);
+  font-family: 'Lobster', cursive;
+  font-weight: 500;
+  padding: 1px;
+  text-shadow: 2px 1px 4px $shadow-color;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.header-top {
+  background-color: $primary-color;
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, $bg-start 0%, $accent-color 50%, $bg-start 100%);
+    border-radius: 10px;
+  }
+}
+
+.header-nav {
+  background-color: #e7dede48;
+  border-top: 1px solid lighten($accent-color, 40%);
+  height: 3vh;
+  padding: 0;
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.navlink {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $text-color;
+  transition: color 0.3s ease;
+  &:hover {
+    color: $accent-color;
+  }
+}
+
+.fancyh1 {
+  font-family: 'Lobster', cursive;
+  font-weight: 300;
+  font-size: 2rem;
+  color: $text-color;
+  text-shadow: 1px 1px 4px $shadow-color;
+  text-align: center;
+}
+
+.dropdown-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; // Cobrir o viewport verticalmente
+  display: flex;
+  justify-content: center; // Centraliza horizontalmente
+  align-items: flex-start; // Alinha ao topo (abaixo do header)
+  padding-top: 60px; // Espaço para o header
+  z-index: 20;
+  pointer-events: none; // Evita interferência quando escondido
+
+  &.hidden {
+    display: none; // Esconde completamente
+  }
+  &.active {
+    display: flex; // Mostra com flexbox
+  }
+}
+
+.dropdown-content {
+  width: 90vw;
+  max-width: 900px;
+  max-height: 80vh;
+  border-radius: 10px;
+  background-color: $primary-color;
+  color: $text-color;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  pointer-events: auto; // Permite interação quando visível
+
+  &.hidden {
+    opacity: 0;
+    transform: scale(0.95); // Efeito suave de escala
+  }
+  &.active {
+    opacity: 1;
+    transform: scale(1); // Tamanho normal
+  }
+  transition: opacity 0.3s ease, transform 0.3s ease; // Transição suave
+}
+
+.overlay {
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  transition: opacity 0.3s ease; // Transição suave para o overlay
+}
