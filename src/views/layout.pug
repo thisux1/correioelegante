@@ -1,4 +1,4 @@
-
+// src/views/layout.pug
 doctype html
 html(lang="pt-BR")
   head
@@ -14,38 +14,42 @@ html(lang="pt-BR")
     link(rel="stylesheet" href="/css/main.css")
   body(class="min-h-screen flex flex-col overflow-hidden" data-logged-in=isLoggedIn ? "true" : "false")
     include partials/header.pug
-    div(class="overlay hidden fixed inset-0 bg-black bg-opacity-50 z-10 transition-opacity duration-300") 
-    div(class="dropdown-wrapper hidden z-20") 
+    div(class="overlay fixed inset-0 bg-black bg-opacity-50 z-10 transition-opacity duration-300") 
+    div(class="dropdown-wrapper z-20") 
       div(class="dropdown-content")
-        div(class="p-6")
-          h3(class="text-2xl font-bold text-pastel-pink mb-6 text-center") Como Funciona
-          div(class="space-y-6")
-            div(class="flex items-start")
-              span(class="text-pastel-pink font-bold text-xl mr-4") 1.
-              div
-                h4(class="text-lg font-semibold mb-2") Criação da Mensagem
-                p(class="text-gray-600") Preencha o formulário com sua mensagem especial e escolha um tema que seja sua cara.
-            div(class="flex items-start")
-              span(class="text-pastel-pink font-bold text-xl mr-4") 2.
-              div
-                h4(class="text-lg font-semibold mb-2") Personalização
-                p(class="text-gray-600") Escolha o layout da mensagem e veja uma pré-visualização antes de finalizar.
-            div(class="flex items-start")
-              span(class="text-pastel-pink font-bold text-xl mr-4") 3.
-              div
-                h4(class="text-lg font-semibold mb-2") Pagamento
-                p(class="text-gray-600") A mensagem é enviada para processamento após a confirmação do pagamento, que é feito de forma segura via Pix, no valor de R$4.
-            div(class="flex items-start")
-              span(class="text-pastel-pink font-bold text-xl mr-4") 4.
-              div
-                h4(class="text-lg font-semibold mb-2") Geração do QR Code
-                p(class="text-gray-600") Sua mensagem é transformada em uma URL única e convertida em um QR Code que será impresso e entregue a você para presentear seu amado(a).
-            div(class="flex items-start")
-              span(class="text-pastel-pink font-bold text-xl mr-4") 5.
-              div
-                h4(class="text-lg font-semibold mb-2") Visualização Final
-                p(class="text-gray-600") O destinatário precisará apenas escanear o QR Code para visualizar o seu presente digital e se encantar com a criativa surpresa.
-          div(class="text-center mt-8")
+        div(class="text-area")
+          div(class="p-6")
+            h3(class="text-2xl font-bold text-pastel-pink mb-6 text-center") Como Funciona
+            div(class="space-y-6")
+              div(class="flex items-start")
+                span(class="text-pastel-pink font-bold text-xl mr-4") 1.
+                div
+                  h4(class="text-lg font-semibold mb-2") Criação da Mensagem
+                  p(class="text-gray-600") Preencha o formulário com sua mensagem especial e escolha um tema que seja sua cara.
+              div(class="flex items-start")
+                span(class="text-pastel-pink font-bold text-xl mr-4") 2.
+                div
+                  h4(class="text-lg font-semibold mb-2") Personalização
+                  p(class="text-gray-600") Escolha o layout da mensagem e veja uma pré-visualização antes de finalizar.
+              div(class="flex items-start")
+                span(class="text-pastel-pink font-bold text-xl mr-4") 3.
+                div
+                  h4(class="text-lg font-semibold mb-2") Pagamento
+                  p(class="text-gray-600") A mensagem é enviada para processamento após a confirmação do pagamento, que é feito de forma segura via Pix, no valor de R$4.
+              div(class="flex items-start")
+                span(class="text-pastel-pink font-bold text-xl mr-4") 4.
+                div
+                  h4(class="text-lg font-semibold mb-2") Geração do QR Code
+                  p(class="text-gray-600") Sua mensagem é transformada em uma URL única e convertida em um QR Code que será impresso e entregue a você para presentear seu amado(a).
+              div(class="flex items-start")
+                span(class="text-pastel-pink font-bold text-xl mr-4") 5.
+                div
+                  h4(class="text-lg font-semibold mb-2") Visualização Final
+                  p(class="text-gray-600") O destinatário precisará apenas escanear o QR Code para visualizar o seu presente digital e se encantar com a criativa surpresa.
+        div(class="footer-section")
+          div(class="scroll-indicator")
+            i(class="fa fa-arrow-down")
+          div(class="text-center mt-4")
             button(class="close-dropdown learn-more") Fechar
     block content
     block scripts
