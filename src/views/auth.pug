@@ -1,0 +1,21 @@
+extends layout.pug
+
+block content
+  .container.auth-container
+    h1.fancyh1 Login ou Cadastro
+    p.auth-subtitle Preencha para continuar sua mensagem
+    form#authForm(action="/auth" method="POST")
+      .form-group
+        label(for="identifier") E-mail ou Usuário
+        input#identifier(type="text" name="identifier" placeholder="Digite seu e-mail ou usuário" required autofocus)
+      .form-group
+        label(for="password") Senha
+        input#password(type="password" name="password" placeholder="Digite sua senha" required)
+      input(type="hidden" name="redirect" value="/create")
+      button.auth-btn(type="submit") Continuar
+    .auth-footer
+      p Use os mesmos dados para login ou cadastro automático
+      a(href="/" class="back-link") Voltar ao início
+
+block scripts
+  script(src="/js/auth.js")

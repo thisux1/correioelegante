@@ -1,69 +1,191 @@
 // Container geral
 .container {
+  
+  width: clamp(280px, 90vw, 90vw); // Mínimo de 280px
+  max-height: 90vh;
+  margin: clamp(1rem, 2vw, 2rem) auto; // Ajustável
+  padding: clamp(1rem, 3vw, 2rem); // Reduz em telas pequenas
+  background-color: $primary-color;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease-in-out;
+  overflow-y: auto; // Rolagem se o conteúdo exceder
+
+}
+
+// Título principal
+.container h1 {
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  font-size: clamp(2rem, 3vw, 2rem)!important;
+  color: $text-color;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+}
+
+// Formulário
+form#messageForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 2vw, 1rem); // Espaço ajustável
+}
+
+// Grupos do formulário
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap ;
+  label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+  }
+  input,
+  textarea {
+    width: 100%;
+    padding: clamp(0.25rem, 1vw, 0.5rem);
+    border: 2px solid lighten($accent-color, 30%);
+    border-radius: 5px;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    &:focus {
+      border-color: $accent-color;
+      background-color: lighten($primary-color, 5%);
+      outline: none;
+    }
+  }
+  textarea {
+    min-height: 100px;
+    max-height: 200px;
+    resize: vertical;
+    overflow-y: auto;
+  }
+  // Estilizando o input de mídia
+  input[type='file']#media {
+    display: none; // Esconde o input nativo
+  }
+  .custom-file-label {
+    background-color: #3498db; // Azul sugerido
+    color: white;
+    padding: clamp(8px, 2vw, 10px) clamp(10px, 3vw, 15px); // Ajustável
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    width: clamp(150px, 40vw, 200px); // Ajusta a largura
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: #2980b9; // Azul mais escuro no hover
+    }
+  }
+  .file-name {
+    font-size: clamp(0.75rem, 2vw, 0.875rem); // 14px ajustável
+    color: #555;
+    margin-top: 0.5rem;
+    word-break: break-word; // Evita overflow em nomes longos
+  }
+  .media-preview {
+
+    margin-top: 1rem;
+    max-width: 100%;
+    img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 5px;
+    }
+    video,
+    audio {
+      width: 100%;
+      max-height: 200px;
+      border-radius: 5px;
+    }
+  }
+}
+
+
+
+// Placeholder para 'Escolher Tema'
+.placeholder-theme {
+  text-align: center;
+  padding: clamp(0.5rem, 2vw, 1rem);
+  margin: clamp(0.5rem, 2vw, 1rem) 0;
+  border: 2px dashed lighten($accent-color, 30%);
+  border-radius: 4px;
+  color: lighten($text-color, 20%);
+  font-style: italic;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+}
+
+// Botão de Visualizar Prévia
+.previewBtn {
+  align-self: center;
+  padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 3vw, 2rem);
+  background: darken($accent-color, 5%);
+  color: white;
+  border: none;
+  border-radius: 2em;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: darken($accent-color, 15%);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px $shadow-color;
+  }
+}
+
+// Área de Prévia
+#previewArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: clamp(1rem, 2vw, 2rem);
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  border: 2px dashed lighten($accent-color, 40%);
+  border-radius: 8px;
+  background-color: rgba($primary-color, 0.5);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+  }
+  .preview-content {
+    width: 100%;
+    text-align: center;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    p {
+      margin: 0.5rem 0;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem); // Escala a fonte
+      color: $text-color;
+    }
+  }
+  .theme-selector {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    max-width: 90vw;
-    max-height: 90vh;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: $primary-color;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.4s ease-in-out;
-    
-  }
-  
-  // Título principal
-  h1 {
-    text-align: center;
-    font-family: 'Lobster', cursive;
-    font-size: 2rem;
-    color: $text-color;
-    margin-bottom: 1.5rem;
-    margin-top: 1vh;
-  }
-  
-  // Formulário
-  form#messageForm {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  // Grupos do formulário
-  .form-group {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
     label {
       font-weight: 600;
       margin-bottom: 0.5rem;
       color: $text-color;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
     }
-    input, textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border: 2px solid lighten($accent-color, 30%);
-      border-radius: 5px;
-      transition: border-color 0.3s ease, background-color 0.3s ease;
-      &:focus {
-        border-color: $accent-color;
-        background-color: lighten($primary-color, 5%);
-        outline: none;
-      }
-    }
-    // Estilizando o input de fileupload
-    input[type='file'] {
-      padding: 0.5rem;
+    select {
+      padding: clamp(0.25rem, 1vw, 0.5rem) clamp(0.5rem, 2vw, 1rem);
       border: 1px solid lighten($primary-color, 20%);
       border-radius: 4px;
-      font-size: 1rem;
-      background: white;
-      color: $text-color;
-      cursor: pointer;
+      font-size: clamp(0.8rem, 2.5vw, 1rem);
       transition: border-color 0.3s ease;
       &:focus {
         border-color: $accent-color;
@@ -71,169 +193,99 @@
       }
     }
   }
-  
-  // Placeholder para 'Escolher Tema'
-  .placeholder-theme {
-    text-align: center;
-    padding: 1rem;
-    margin: 1rem 0;
-    border: 2px dashed lighten($accent-color, 30%);
-    border-radius: 4px;
-    color: lighten($text-color, 20%);
-    font-style: italic;
+}
+
+// Botão de Confirmar
+button#confirmBtn {
+  align-self: center;
+  padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 3vw, 2rem);
+  background: darken($accent-color, 5%);
+  color: white;
+  border: none;
+  border-radius: 2em;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: darken($accent-color, 15%);
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px $shadow-color;
   }
-  
-  // Botão de Visualizar Prévia
-  button#previewBtn {
-    align-self: center;
-    padding: 0.8rem 2rem;
-    background: darken($accent-color, 5%);
-    color: white;
-    border: none;
-    border-radius: 2em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      background: darken($accent-color, 15%);
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px $shadow-color;
-    }
+}
+
+// Modal de Login
+#loginModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease;
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
   }
-  
-  // Área de Prévia
-  #previewArea {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border: 2px dashed lighten($accent-color, 40%);
+  .modal-content {
+    background: white;
+    padding: clamp(1rem, 3vw, 2rem);
     border-radius: 8px;
-    background-color: rgba($primary-color, 0.5);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    &.hidden {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-10px);
+    width: clamp(260px, 90%, 400px); // Mínimo de 260px
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    h3 {
+      font-family: 'Lobster', cursive;
+      font-size: clamp(1.2rem, 4vw, 1.5rem);
+      margin-bottom: 1rem;
+      color: $accent-color;
     }
-    .preview-content {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      p {
-        margin: 0.5rem 0;
-        font-size: 1.1rem;
-        color: $text-color;
-      }
-    }
-    .theme-selector {
+    form {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      label {
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-        color: $text-color;
-      }
-      select {
-        padding: 0.5rem 1rem;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      input {
+        padding: clamp(0.5rem, 2vw, 0.75rem);
         border: 1px solid lighten($primary-color, 20%);
         border-radius: 4px;
-        font-size: 1rem;
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
         transition: border-color 0.3s ease;
         &:focus {
           border-color: $accent-color;
           outline: none;
         }
       }
-    }
-  }
-  
-  // Botão de Confirmar
-  button#confirmBtn {
-    align-self: center;
-    padding: 0.8rem 2rem;
-    background: darken($accent-color, 5%);
-    color: white;
-    border: none;
-    border-radius: 2em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      background: darken($accent-color, 15%);
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px $shadow-color;
-    }
-  }
-  
-  // Modal de Login
-  #loginModal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.4s ease;
-    &.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      h3 {
-        font-family: 'Lobster', cursive;
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: $accent-color;
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        input {
-          padding: 0.75rem;
-          border: 1px solid lighten($primary-color, 20%);
-          border-radius: 4px;
-          font-size: 1rem;
-          transition: border-color 0.3s ease;
-          &:focus {
-            border-color: $accent-color;
-            outline: none;
-          }
-        }
-        button {
-          padding: 0.8rem 2rem;
-          background: darken($accent-color, 5%);
-          color: white;
-          border: none;
-          border-radius: 2em;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease-in-out;
-          &:hover {
-            background: darken($accent-color, 15%);
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px $shadow-color;
-          }
+      button {
+        padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 3vw, 2rem);
+        background: darken($accent-color, 5%);
+        color: white;
+        border: none;
+        border-radius: 2em;
+        font-weight: 600;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background: darken($accent-color, 15%);
+          transform: scale(1.05);
+          box-shadow: 0 8px 16px $shadow-color;
         }
       }
     }
   }
-  
-  // Animação de Fade In
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+}
+
+// Animação de Fade In
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// Media Query para larguras menores
+@media (max-width: 340px) {
+  .container {
+    width: 100vw; // Usa toda a largura
+    border-radius: 0; // Remove bordas arredondadas
+    margin: 0 auto; // Remove margens laterais
   }
-  
+}
