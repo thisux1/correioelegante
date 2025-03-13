@@ -14,13 +14,28 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get('/', (req, res) => {
-  res.render('create', { title: 'Escreva Sua Mensagem', isLoggedIn: !!req.session.user });
+  const formData = req.session.formData || {};
+  res.render('create', { 
+    title: 'Crie sua Mensagem', 
+    isLoggedIn: !!req.session.user,
+    formData 
+  });
+  delete req.session.formData;
 });
 
 router.post('/', upload.single('media'), async (req, res) => {
-  if (!req.session.user) return res.redirect('/auth');
+  if (!req.session.user) {
+    req.session.formData = {
+      message: req.body.message,
+      recipient: req.body.recipient,
+      media: req.file ? `/uploads/${req.file.filename}` : null
+    };
+    return res.redirect('/auth');
+  }
+
   const { message, recipient } = req.body;
   const media = req.file ? `/uploads/${req.file.filename}` : null;
+
   try {
     const newMessage = new Message({
       message,
@@ -30,6 +45,7 @@ router.post('/', upload.single('media'), async (req, res) => {
       createdAt: new Date()
     });
     await newMessage.save();
+
     const url = `http://localhost:3000/message/${newMessage._id}`;
     const qrCodeUrl = await QRCode.toDataURL(url);
     res.render('payment', { qrCodeUrl, messageId: newMessage._id });

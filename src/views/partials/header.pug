@@ -1,15 +1,21 @@
 // src/views/partials/header.pug
 header(class="bg-white shadow-md")
-  div(class="header-top flex" id="header-top")
+  .header-top.flex(id="header-top")
     a(href="/" class="flex items-center")
       img(src="/assets/logo.png" alt="Logo" class="w-10 h-10 mr-3")
-      h1(class="logotext text-xl") Correio Elegante
-  nav(class="header-nav flex justify-center bg-white" id="header-nav")
-    ul(class="flex space-x-8 py-3")
+      h1.logotext.text-xl Correio Elegante
+    .user-menu.ml-auto.flex.items-center
+      if !isLoggedIn
+        a(href="/auth" class="user-icon flex flex-col items-center")
+          img(src="/assets/user.svg" alt="Login" class="w-6 h-6")
+          span.text-sm.font-semibold Login/Cadastro
+      else
+        a(href="/profile" class="user-profile flex flex-col items-center")
+          img(src="/assets/user.svg" alt="Perfil" class="w-6 h-6")
+          span.text-sm.font-semibold #{userName || "Usuário"}
+  nav.header-nav.flex.justify-center.bg-white(id="header-nav")
+    ul.flex.py-3
       li: a(href="/create" class="navlink hover:text-accent transition") Enviar Carta
       li(class="relative")
-        a(href="/how-it-works" class="navlink hover:text-accent transition dropdown-trigger") Como Funciona
+        a(href="/how-it-works" class="navlink hover:text-accent transition dropdown-trigger" aria-expanded="false") Como Funciona
       li: a(href="/contact" class="navlink hover:text-accent transition") Contato
-      if isLoggedIn
-        li: span(class="text-gray-600") Bem-vindo, #{userName || "Usuário"}!
-        li: a(href="/logout" class="navlink hover:text-accent transition") Sair

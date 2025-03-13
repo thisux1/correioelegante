@@ -9,13 +9,14 @@ const authRoutes = require('./routes/auth');
 
 const app = express();
 
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(session({
   secret: 'seu-segredo-aqui',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: false }
 }));
 
 const storage = multer.diskStorage({
@@ -34,7 +35,6 @@ mongoose.connect('mongodb://localhost:27017/correio-elegante', {
 }).then(() => console.log('MongoDB conectado'))
   .catch(err => console.error('Erro ao conectar ao MongoDB:', err));
 
-// Middleware para passar variáveis ao header
 app.use((req, res, next) => {
   res.locals.isLoggedIn = !!req.session.user;
   res.locals.userName = req.session.user ? req.session.user.identifier : null;
@@ -45,12 +45,14 @@ app.use('/create', createRoutes);
 app.use('/auth', authRoutes);
 app.get('/', (req, res) => res.render('index'));
 app.get('/logout', (req, res) => {
-  req.session.destroy();
-  res.redirect('/');
+  req.session.destroy(() => res.redirect('/'));
 });
 app.get('/profile', (req, res) => {
   if (!req.session.user) return res.redirect('/auth');
   res.render('profile', { user: req.session.user });
+});
+app.get('/contact', (req, res) => {
+  res.render('contact', { title: 'Contato' });
 });
 
 app.listen(3000, () => console.log('Servidor na porta 3000'));

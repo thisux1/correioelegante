@@ -1,6 +1,5 @@
-// scss/partials/header.scss
 .logotext {
-  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-size: clamp(1.3rem, 4vw, 1.6rem)!important;
   color: darken($accent-color, 10%);
   font-family: 'Lobster', cursive;
   font-weight: 500;
@@ -20,7 +19,7 @@ header {
   position: relative;
   padding: clamp(0.25rem, 2vw, 0.5rem); // Reduz em telas menores
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   &::after {
@@ -42,25 +41,71 @@ header {
   }
 }
 
+.user-menu {
+  display: flex;
+  align-items: center;
+  padding: clamp(0.25rem, 1vw, 0.5rem);
+
+  .user-icon,
+  .user-profile {
+    display: flex;
+    align-items: center!important;
+    color: $text-color;
+    flex-wrap: wrap;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    flex-direction: row; 
+    align-items: center; 
+
+    img {
+      width: clamp(20px, 5vw, 24px); // Ícone menor que o logo
+      height: clamp(20px, 5vw, 24px);
+    }
+
+    span {
+      margin-left: clamp(0.25rem, 1vw, 0.5rem);
+      font-size: clamp(0.8rem, 2.5vw, 0.875rem);
+    }
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+
+  .user-profile {
+    position: relative;
+    cursor: pointer;
+  }
+}
+
 .header-nav {
   background-color: #e7dede48;
   border-top: 1px solid lighten($accent-color, 40%);
-  height: 3vh;
-  padding: 0;
+  padding: clamp(0.25rem, 1vw, 0.5rem) 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  min-height: max-content;
-  align-content: center;
   justify-content: center;
   align-items: center;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    gap: clamp(0.5rem, 2vw, 2rem);
+  }
 }
 
 .navlink {
-  font-size: 1rem;
+  font-size: clamp(1rem, 2.5vw, 1rem);
   font-weight: 600;
   color: $text-color;
   transition: color 0.3s ease;
+  padding: 0 clamp(0.25rem, 1vw, 0.5rem);
+  white-space: nowrap;
+
   &:hover {
     color: $accent-color;
   }
@@ -111,6 +156,7 @@ header {
   opacity: 0; // Estado inicial invisível
   transform: scale(0.95) translateY(-20px); // Escala e posição inicial
   transition: opacity 0.3s ease, transform 0.3s ease;
+  margin-top: 40px;
 
   &.active {
     opacity: 1;
@@ -207,4 +253,16 @@ header {
 
 .scroll-indicator:hover {
   transform: translateX(-50%) scale(1.2);
+}
+
+@media (max-width: 340px) {
+  .header-top {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+
+    .user-menu {
+      margin-top: 0.5rem;
+    }
+  }
 }

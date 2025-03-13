@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  div(class="container mx-auto p-6 text-center max-w-3xl")
+
+    h1(class="text-3xl font-bold text-pastel-pink mb-6") Contato & Créditos
+
+    p(class="text-lg text-gray-700 mb-6") 
+      | O tradicional correio elegante agora digital, com mensagens personalizadas e criativas para surpreender quem você gosta.
+
+    p(class="text-lg text-gray-700 mb-8")
+      | O objetivo do projeto é arrecadar fundos para comprar calculadoras para a professora de matemática, Carla, 
+      | para serem usadas pelos alunos. O projeto foi sugerido em conjunto pela sala, enquanto sua versão digital foi idealizada pelo aluno 
+      strong Thiago Araújo.
+
+    div(class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12")
+
+      // Thiago - Desenvolvedor
+      div(class="text-center")
+        img(src="/assets/thiago.svg" alt="Thiago da Costa Araújo" class="w-24 h-24 mx-auto mb-4")
+        h2(class="text-xl font-semibold") Thiago da Costa Araújo
+        p(class="text-gray-600 mb-4") Desenvolvedor do projeto
+        div(class="flex justify-center space-x-4")
+          a(href="https://github.com/thisux1" target="_blank" class="text-gray-700 hover:text-black")
+            img(src="/assets/github-icon.svg" alt="GitHub" class="w-6 h-6")
+          a(href="https://wa.me/5511940325938" target="_blank" class="text-green-600 hover:underline")
+            img(src="/assets/whatsapp-icon.svg" alt="WhatsApp" class="w-6 h-6")
+          a(href="https://www.instagram.com/seu_instagram" target="_blank" class="text-pink-600 hover:underline")
+            img(src="/assets/instagram-icon.svg" alt="Instagram" class="w-6 h-6")
+
+      // Gustavo - Representante de Classe
+      div(class="text-center")
+        img(src="/assets/gustavo.svg" alt="Gustavo" class="w-24 h-24  mx-auto mb-4")
+        h2(class="text-xl font-semibold") Gustavo
+        p(class="text-gray-600 mb-4") Representante de Classe
+        div(class="flex justify-center space-x-4")
+          a(href="https://wa.me/55XXXXXXXXXXX" target="_blank" class="text-green-600 hover:underline")
+            img(src="/assets/whatsapp-icon.svg" alt="WhatsApp" class="w-6 h-6")
+          a(href="https://www.instagram.com/gustavo" target="_blank" class="text-pink-600 hover:underline")
+            img(src="/assets/instagram-icon.svg" alt="Instagram" class="w-6 h-6")
+
+    div(class="mt-12")
+      h2(class="text-2xl font-bold text-gray-800 mb-4") Agradecimentos
+      p(class="text-gray-600 max-w-lg mx-auto") Um agradecimento especial a todos que ajudaram direta ou indiretamente a tornar este projeto possível!

@@ -1,0 +1,58 @@
+
+.profile-container {
+    width: clamp(280px, 90vw, 600px);
+    margin: clamp(1rem, 2vw, 2rem) auto;
+    padding: clamp(1rem, 3vw, 2rem);
+    background-color: $primary-color;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  .fancyh1 {
+    font-family: 'Lobster', cursive;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    color: $accent-color;
+    text-shadow: 1px 1px 4px $shadow-color;
+    text-align: center;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  }
+  
+  .profile-info {
+    p {
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      color: $text-color;
+      margin: 0.5rem 0;
+      strong {
+        font-weight: 600;
+      }
+    }
+  }
+  
+  .profile-actions {
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+    text-align: center;
+    .logout-btn {
+      padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
+      background: darken($accent-color, 5%);
+      color: white;
+      border: none;
+      border-radius: 2em;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        background: darken($accent-color, 15%);
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px $shadow-color;
+      }
+    }
+  }
+  
+  @media (max-width: 340px) {
+    .profile-container {
+      width: 100vw;
+      border-radius: 0;
+      margin: 0 auto;
+    }
+  }

@@ -4,13 +4,15 @@ block content
   .container.auth-container
     h1.fancyh1 Login ou Cadastro
     p.auth-subtitle Preencha para continuar sua mensagem
+    if error
+      p.error-message #{error}
     form#authForm(action="/auth" method="POST")
       .form-group
         label(for="identifier") E-mail ou Usuário
-        input#identifier(type="text" name="identifier" placeholder="Digite seu e-mail ou usuário" required autofocus)
+        input#identifier(type="text" name="identifier" value=`${formData && formData.identifier ? formData.identifier : ''}` placeholder="Digite seu e-mail ou usuário" required autofocus)
       .form-group
         label(for="password") Senha
-        input#password(type="password" name="password" placeholder="Digite sua senha" required)
+        input#password(type="password" name="password" value=`${formData && formData.password ? formData.password : ''}` placeholder="Digite sua senha" required)
       input(type="hidden" name="redirect" value="/create")
       button.auth-btn(type="submit") Continuar
     .auth-footer
@@ -18,4 +20,4 @@ block content
       a(href="/" class="back-link") Voltar ao início
 
 block scripts
-  script(src="/js/auth.js")
+  script(src="/js/auth.js") 

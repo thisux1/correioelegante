@@ -20,6 +20,9 @@ $particle-count: 100;
 @import 'partials/header';
 @import 'create';
 @import 'auth';
+@import 'profile'; 
+@import 'contact';
+
 // Reset básico
 * {
   margin: 0;

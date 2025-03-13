@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  .container.profile-container
+    h1.fancyh1 Perfil
+    .profile-info
+      p
+        strong Identificador: 
+        span #{user.identifier}
+      p
+        strong Mensagens Criadas: 
+        span Em breve (integração com banco de dados)
+    .profile-actions
+      a(href="/logout" class="logout-btn") Sair

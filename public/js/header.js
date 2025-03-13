@@ -81,5 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollIndicator.style.display = 'none';
       }
     }
+    
   });
 });

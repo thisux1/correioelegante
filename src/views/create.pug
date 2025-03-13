@@ -1,16 +1,17 @@
-
 extends layout.pug
 
 block content
+  // src/views/create.pug
   .container(data-logged-in=isLoggedIn)
-    h1 Crie sua Mensagem
-    form#messageForm(action="/create" method="POST")
+    h1.fancyh1 Crie sua Mensagem
+    form#messageForm(action="/create" method="POST" enctype="multipart/form-data")
       .form-group
         label(for="message") Mensagem:
         textarea#message(name="message" rows="5" placeholder="Digite sua mensagem..." required)
+          | #{formData && formData.message ? formData.message : ''}
       .form-group
         label(for="recipient") Destinatário:
-        input#recipient(type="text" name="recipient" placeholder="Nome e sala do destinatário")
+        input#recipient(type="text" name="recipient" placeholder="Nome e sala do destinatário" value=formData && formData.recipient ? formData.recipient : '')
       .form-group
         label(for="media") Adicionar Mídia
         input(type="file" id="media" name="media" accept="image/*,video/*,audio/*")
@@ -23,24 +24,28 @@ block content
       button#previewBtn.previewBtn(type="button") Visualizar Prévia
 
     #previewArea.hidden
-      h2 Prévia da Mensagem
+      h2.fancyh2 Prévia da Mensagem
       .preview-content
         p#previewMessage
         p#previewRecipient
-      .theme-selector
-        label Escolha um tema:
-        select#themeSelector
-          option(value="theme1") Tema 1
-          option(value="theme2") Tema 2
-          option(value="theme3") Tema 3
-      button.previewBtn(type="button") Pronto // Mantém apenas a classe aqui
+        .media-preview#previewMedia
+      if isLoggedIn
+        .theme-selector
+          label Escolha um tema:
+          select#themeSelector
+            option(value="theme1") Tema 1
+            option(value="theme2") Tema 2
+            option(value="theme3") Tema 3
+      button(type="submit") Pronto
 
     #loginModal.hidden
       .modal-content
         h3 Acesse ou Cadastre-se
+        p.error-message.hidden#modalError
         form#authForm(action="/auth" method="POST")
           input(type="text" name="identifier" placeholder="E-mail ou Usuário" required)
           input(type="password" name="password" placeholder="Senha" required)
+          input(type="hidden" name="redirect" value="/create")
           button(type="submit") Continuar
 
 block scripts
