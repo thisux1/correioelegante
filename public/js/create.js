@@ -15,6 +15,57 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeSelector = document.querySelector('#themeSelector');
   const isLoggedIn = document.body.querySelector('.container').dataset.loggedIn === 'true';
 
+  // Função para salvar os dados do formulário
+  const saveFormData = () => {
+    const formData = {
+      message: document.querySelector('#message').value,
+      recipient: document.querySelector('#recipient').value,
+      media: mediaInput.files[0] ? {
+        name: mediaInput.files[0].name,
+        type: mediaInput.files[0].type,
+        data: URL.createObjectURL(mediaInput.files[0])
+      } : null
+    };
+    localStorage.setItem('formData', JSON.stringify(formData));
+  };
+
+  // Função para restaurar os dados do formulário
+  const restoreFormData = () => {
+    const savedData = JSON.parse(localStorage.getItem('formData') || '{}');
+    if (savedData.message) document.querySelector('#message').value = savedData.message;
+    if (savedData.recipient) document.querySelector('#recipient').value = savedData.recipient;
+    if (savedData.media) {
+      fileNameSpan.textContent = savedData.media.name;
+      const previewElement = savedData.media.type.startsWith('image') ? 'img' :
+                            savedData.media.type.startsWith('video') ? 'video' : 'audio';
+      const element = document.createElement(previewElement);
+      element.src = savedData.media.data;
+      if (previewElement !== 'img') element.controls = true;
+      mediaPreview.innerHTML = '';
+      mediaPreview.appendChild(element);
+    }
+  };
+
+  // Função para mostrar o preview
+  const showPreview = () => {
+    const savedData = JSON.parse(localStorage.getItem('formData') || '{}');
+    previewMessage.textContent = savedData.message || 'Digite sua mensagem...';
+    previewRecipient.textContent = savedData.recipient || 'Nome e sala do destinatário';
+    previewMedia.innerHTML = '';
+    if (savedData.media) {
+      const previewElement = savedData.media.type.startsWith('image') ? 'img' :
+                            savedData.media.type.startsWith('video') ? 'video' : 'audio';
+      const element = document.createElement(previewElement);
+      element.src = savedData.media.data;
+      if (previewElement !== 'img') element.controls = true;
+      previewMedia.appendChild(element);
+    }
+    previewArea.classList.remove('hidden');
+  };
+
+  // Restaurar dados ao carregar a página
+  if (!isLoggedIn) restoreFormData();
+
   // Preview automático da mídia no formulário
   mediaInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -38,42 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
         mediaPreview.appendChild(audio);
       }
     }
+    saveFormData();
   });
 
   // Botão Visualizar Prévia
   previewBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    saveFormData();
     if (!isLoggedIn) {
       loginModal.classList.remove('hidden');
     } else {
-      const message = document.querySelector('#message').value;
-      const recipient = document.querySelector('#recipient').value;
-      const file = mediaInput.files[0];
-
-      previewMessage.textContent = message || 'Digite sua mensagem...';
-      previewRecipient.textContent = recipient || 'Nome e sala do destinatário';
-
-      previewMedia.innerHTML = '';
-      if (file) {
-        const fileType = file.type.split('/')[0];
-        if (fileType === 'image') {
-          const img = document.createElement('img');
-          img.src = URL.createObjectURL(file);
-          previewMedia.appendChild(img);
-        } else if (fileType === 'video') {
-          const video = document.createElement('video');
-          video.src = URL.createObjectURL(file);
-          video.controls = true;
-          previewMedia.appendChild(video);
-        } else if (fileType === 'audio') {
-          const audio = document.createElement('audio');
-          audio.src = URL.createObjectURL(file);
-          audio.controls = true;
-          previewMedia.appendChild(audio);
-        }
-      }
-
-      previewArea.classList.remove('hidden');
+      showPreview();
     }
   });
 
@@ -93,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const redirect = authForm.querySelector('[name="redirect"]').value;
     const formData = `identifier=${encodeURIComponent(identifier)}&password=${encodeURIComponent(password)}&redirect=${encodeURIComponent(redirect)}`;
     console.log('Enviando dados do formulário:', { identifier, password, redirect });
-  
+
     try {
       const response = await fetch('/auth', {
         method: 'POST',
@@ -105,8 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await response.json();
       console.log('Resposta do servidor:', result);
       if (result.success) {
-        loginModal.classList.add('hidden');
-        window.location.reload();
+        loginModal.classList.add('hidden'); // Fecha o modal
+        document.body.querySelector('.container').dataset.loggedIn = 'true'; // Atualiza isLoggedIn
+        restoreFormData(); // Restaura os dados do formulário
+        showPreview(); // Mostra o preview
       } else {
         modalError.textContent = result.error;
         modalError.classList.remove('hidden');
@@ -117,10 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
       modalError.classList.remove('hidden');
     }
   });
+
   // Fechar modal ao clicar fora
   loginModal.addEventListener('click', (e) => {
     if (e.target === loginModal) {
       loginModal.classList.add('hidden');
     }
+  });
+
+  // Limpar localStorage após envio bem-sucedido do formulário principal
+  messageForm.addEventListener('submit', (e) => {
+    localStorage.removeItem('formData');
   });
 });
