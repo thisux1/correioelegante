@@ -153,6 +153,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Submissão do formulário principal
+  messageForm.addEventListener('submit', async (e) => {
+    if (!isLoggedIn) {
+      e.preventDefault();
+      saveFormData();
+      loginModal.classList.remove('hidden');
+    }
+    // O backend redireciona para /payment automaticamente
+  });
+
   // Limpar localStorage após envio bem-sucedido do formulário principal
   messageForm.addEventListener('submit', (e) => {
     localStorage.removeItem('formData');

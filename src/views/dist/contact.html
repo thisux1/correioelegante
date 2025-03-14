@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correio Elegante</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&amp;family=Lobster&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body class="min-h-screen flex flex-col overflow-hidden" data-logged-in="false">
+    <!-- src/views/partials/header.pug-->
+    <header class="bg-white shadow-md">
+      <div class="header-top flex" id="header-top"><a class="flex items-center" href="/"><img class="w-10 h-10 mr-3" src="/assets/logo.png" alt="Logo">
+          <h1 class="logotext text-xl">Correio Elegante</h1></a>
+        <div class="user-menu ml-auto flex items-center"><a class="user-icon flex flex-col items-center" href="/auth"><img class="w-6 h-6" src="/assets/user.svg" alt="Login"><span class="text-sm font-semibold">Login/Cadastro</span></a>
+        </div>
+      </div>
+      <nav class="header-nav flex justify-center bg-white" id="header-nav">
+        <ul class="flex py-3">
+          <li><a class="navlink hover:text-accent transition" href="/create">Enviar Carta</a></li>
+          <li class="relative"><a class="navlink hover:text-accent transition dropdown-trigger" href="/how-it-works" aria-expanded="false">Como Funciona</a></li>
+          <li><a class="navlink hover:text-accent transition" href="/contact">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="overlay fixed inset-0 bg-black bg-opacity-50 z-10 transition-opacity duration-300"> </div>
+    <div class="dropdown-wrapper z-20"> 
+      <div class="dropdown-content">
+        <div class="text-area">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-pastel-pink mb-6 text-center">Como Funciona</h3>
+            <div class="space-y-6">
+              <div class="flex items-start"><span class="text-pastel-pink font-bold text-xl mr-4">1.</span>
+                <div>
+                  <h4 class="text-lg font-semibold mb-2">Criação da Mensagem</h4>
+                  <p class="text-gray-600">Preencha o formulário com sua mensagem especial e escolha um tema que seja sua cara.</p>
+                </div>
+              </div>
+              <div class="flex items-start"><span class="text-pastel-pink font-bold text-xl mr-4">2.</span>
+                <div>
+                  <h4 class="text-lg font-semibold mb-2">Personalização</h4>
+                  <p class="text-gray-600">Escolha o layout da mensagem e veja uma pré-visualização antes de finalizar.</p>
+                </div>
+              </div>
+              <div class="flex items-start"><span class="text-pastel-pink font-bold text-xl mr-4">3.</span>
+                <div>
+                  <h4 class="text-lg font-semibold mb-2">Pagamento</h4>
+                  <p class="text-gray-600">A mensagem é enviada para processamento após a confirmação do pagamento, que é feito de forma segura via Pix, no valor de R$4.</p>
+                </div>
+              </div>
+              <div class="flex items-start"><span class="text-pastel-pink font-bold text-xl mr-4">4.</span>
+                <div>
+                  <h4 class="text-lg font-semibold mb-2">Geração do QR Code</h4>
+                  <p class="text-gray-600">Sua mensagem é transformada em uma URL única e convertida em um QR Code que será impresso e entregue a você para presentear seu amado(a).</p>
+                </div>
+              </div>
+              <div class="flex items-start"><span class="text-pastel-pink font-bold text-xl mr-4">5.</span>
+                <div>
+                  <h4 class="text-lg font-semibold mb-2">Visualização Final</h4>
+                  <p class="text-gray-600">O destinatário precisará apenas escanear o QR Code para visualizar o seu presente digital e se encantar com a criativa surpresa.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-section">
+          <div class="scroll-indicator"><i class="fa fa-arrow-down"></i></div>
+          <div class="text-center mt-4">
+            <button class="close-dropdown learn-more">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto p-6 text-center max-w-3xl">
+      <h1 class="text-3xl font-bold text-pastel-pink mb-6">Contato & Créditos</h1>
+      <p class="text-lg text-gray-700 mb-6">
+         O tradicional correio elegante agora digital, com mensagens personalizadas e criativas para surpreender quem você gosta.</p>
+      <p class="text-lg text-gray-700 mb-8">
+        O objetivo do projeto é arrecadar fundos para comprar calculadoras para a professora de matemática, Carla, 
+        para serem usadas pelos alunos. O projeto foi sugerido em conjunto pela sala, enquanto sua versão digital foi idealizada pelo aluno <strong>Thiago Araújo.</strong>
+      </p>
+      <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
+        <!-- Thiago - Desenvolvedor-->
+        <div class="text-center"><img class="w-24 h-24 mx-auto mb-4" src="/assets/thiago.svg" alt="Thiago da Costa Araújo">
+          <h2 class="text-xl font-semibold">Thiago</h2>
+          <p class="text-gray-600 mb-4">Desenvolvedor do projeto</p>
+          <div class="flex justify-center space-x-4"><a class="social-btn github-btn" href="https://github.com/thisux1" target="_blank"><img class="social-icon" src="/assets/github.svg" alt="GitHub"></a><a class="social-btn whatsapp-btn" href="https://wa.me/5511940325938" target="_blank"><img class="social-icon" src="/assets/whatsapp.svg" alt="WhatsApp"></a><a class="social-btn instagram-btn" href="https://www.instagram.com/thiago_.___/" target="_blank"><img class="social-icon" src="/assets/instagram.svg" alt="Instagram"></a></div>
+        </div>
+        <!-- Gustavo - Representante de Classe-->
+        <div class="text-center"><img class="w-24 h-24 mx-auto mb-4" src="/assets/gustavo.svg" alt="Gustavo">
+          <h2 class="text-xl font-semibold">Gustavo</h2>
+          <p class="text-gray-600 mb-4">Representante de Classe</p>
+          <div class="flex justify-center space-x-4"><a class="social-btn whatsapp-btn" href="https://wa.me/5511953035625" target="_blank"><img class="social-icon" src="/assets/whatsapp.svg" alt="WhatsApp"></a><a class="social-btn instagram-btn" href="https://www.instagram.com/gusttavo.28/" target="_blank"><img class="social-icon" src="/assets/instagram.svg" alt="Instagram"></a></div>
+        </div>
+      </div>
+      <div class="mt-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Agradecimentos</h2>
+        <p class="text-gray-600 max-w-lg mx-auto">Um agradecimento especial a todos que incentivaram direta ou indiretamente e possibilitaram tornar este projeto possível! </p>
+      </div>
+    </div>
+    <script src="/js/header.js"></script>
+  </body>
+</html>

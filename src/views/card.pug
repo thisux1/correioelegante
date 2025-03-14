@@ -1,0 +1,22 @@
+extends layout.pug
+
+block content
+  .container.mx-auto.p-6.max-w-3xl(class=card.theme)
+    h1.text-3xl.font-bold.mb-6 Sua Carta
+    .card-content.bg-white.shadow-md.rounded-lg.p-6
+      p.text-lg.text-gray-700.mb-4
+        strong Para: 
+        | #{card.recipient}
+      p.text-lg.text-gray-700.mb-4 #{card.message}
+      if card.media
+        .media-preview.mb-4
+          if card.media.endsWith('.jpg') || card.media.endsWith('.png')
+            img(src=card.media alt="Mídia da carta" class="max-w-full rounded")
+          else if card.media.endsWith('.mp4')
+            video(src=card.media controls class="max-w-full rounded")
+          else if card.media.endsWith('.mp3')
+            audio(src=card.media controls class="w-full")
+      p.text-gray-600
+        | Enviado por: #{card.sender || 'Anônimo'}
+    .mt-6.text-center
+      a(href="/" class="text-pastel-pink hover:underline") Voltar para o início

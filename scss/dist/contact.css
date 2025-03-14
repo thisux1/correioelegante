@@ -1,0 +1,61 @@
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.social-btn .social-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+.social-btn::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(45deg);
+  top: -50%;
+  left: -100%;
+  animation: shine 4s infinite ease-in-out;
+}
+.social-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.social-btn:hover::after {
+  animation: none;
+}
+
+.github-btn {
+  background-color: #181717;
+}
+
+.whatsapp-btn {
+  background-color: #25D366;
+}
+
+.instagram-btn {
+  background-color: #E4405F;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+.container .text-pastel-pink {
+  color: #ff9999;
+}

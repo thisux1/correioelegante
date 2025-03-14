@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+  .container.mx-auto.p-6.text-center.max-w-3xl
+    h1.text-3xl.font-bold.mb-6 Pagamento via Pix
+    p.text-lg.text-gray-700.mb-4 Pague R$ 5,00 escaneando o QR code ou copiando a chave Pix:
+    img(src=`data:image/png;base64,${qrCode}` alt="QR Code do Pix" class="mx-auto.mb-6")
+    p.text-gray-600.mb-4 Chave Pix:
+    input#pixKey(type="text" value=pixKey readonly class="w-full p-2 mb-4 border rounded")
+    button#copyBtn(type="button" class="previewBtn mb-6" onclick="navigator.clipboard.writeText(document.getElementById('pixKey').value); alert('Chave copiada!')") Copiar Chave
+    p.text-gray-600 Aguardando pagamento para liberar a mensagem: 
+      a(href=url target="_blank") #{url}
+    a(href="/" class="text-pastel-pink.hover:underline") Voltar
