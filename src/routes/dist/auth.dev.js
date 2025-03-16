@@ -6,7 +6,7 @@ var express = require('express');
 
 var router = express.Router();
 
-var User = require('../models/user');
+var user = require('../models/user');
 
 var bcrypt = require('bcrypt');
 
@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
   delete req.session.formData;
 });
 router.post('/', function _callee(req, res) {
-  var _req$body, identifier, password, redirect, user, isMatch;
+  var _req$body, identifier, password, redirect, _user, isMatch;
 
   return regeneratorRuntime.async(function _callee$(_context) {
     while (1) {
@@ -63,15 +63,15 @@ router.post('/', function _callee(req, res) {
           }));
 
         case 10:
-          user = _context.sent;
+          _user = _context.sent;
 
-          if (!user) {
+          if (!_user) {
             _context.next = 19;
             break;
           }
 
           _context.next = 14;
-          return regeneratorRuntime.awrap(user.comparePassword(password));
+          return regeneratorRuntime.awrap(_user.comparePassword(password));
 
         case 14:
           isMatch = _context.sent;
@@ -92,20 +92,20 @@ router.post('/', function _callee(req, res) {
 
         case 19:
           // Cadastro
-          user = new User({
+          _user = new User({
             identifier: identifier,
             password: password
           });
           _context.next = 22;
-          return regeneratorRuntime.awrap(user.save());
+          return regeneratorRuntime.awrap(_user.save());
 
         case 22:
-          console.log('Usuário cadastrado:', user);
+          console.log('Usuário cadastrado:', _user);
 
         case 23:
           // Define a sessão
           req.session.user = {
-            identifier: user.identifier
+            identifier: _user.identifier
           };
           req.session.save(function (err) {
             if (err) {
