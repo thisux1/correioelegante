@@ -1,0 +1,16 @@
+
+<!-- src/views/partials/header.pug-->
+<header class="bg-white shadow-md">
+  <div class="header-top flex" id="header-top"><a class="flex items-center" href="/"><img class="w-10 h-10 mr-3" src="/assets/logo.png" alt="Logo"/>
+      <h1 class="logotext text-xl">Correio Elegante</h1></a>
+    <div class="user-menu ml-auto flex items-center"><a class="user-icon flex flex-col items-center" href="/auth"><img class="w-6 h-6" src="/assets/user.svg" alt="Login"/><span class="text-sm font-semibold">Login/Cadastro</span></a>
+    </div>
+  </div>
+  <nav class="header-nav flex justify-center bg-white" id="header-nav">
+    <ul class="flex py-3">
+      <li><a class="navlink hover:text-accent transition" href="/create">Enviar Carta</a></li>
+      <li class="relative"><a class="navlink hover:text-accent transition dropdown-trigger" href="/how-it-works" aria-expanded="false">Como Funciona</a></li>
+      <li><a class="navlink hover:text-accent transition" href="/contact">Contato1</a></li>
+    </ul>
+  </nav>
+</header>
