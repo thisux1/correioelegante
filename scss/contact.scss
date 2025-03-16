@@ -26,7 +26,7 @@ $instagram-color: #E4405F; // Rosa/vermelho do Instagram
   &::after {
     content: '';
     position: absolute;
-    width: 60px;
+    width: 90px;
     height: 60px;
     background: rgba(255, 255, 255, 0.3);
     transform: rotate(45deg);
@@ -70,4 +70,7 @@ $instagram-color: #E4405F; // Rosa/vermelho do Instagram
   .text-pastel-pink {
     color: #ff9999; // Exemplo de cor pastel pink
   }
+}
+p{
+  margin-bottom: 40px!important;
 }

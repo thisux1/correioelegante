@@ -17,7 +17,7 @@
 .social-btn::after {
   content: "";
   position: absolute;
-  width: 60px;
+  width: 90px;
   height: 60px;
   background: rgba(255, 255, 255, 0.3);
   transform: rotate(45deg);
@@ -58,4 +58,8 @@
 }
 .container .text-pastel-pink {
   color: #ff9999;
+}
+
+p {
+  margin-bottom: 40px !important;
 }
